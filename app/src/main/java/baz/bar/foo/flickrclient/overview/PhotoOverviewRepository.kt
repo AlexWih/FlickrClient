@@ -13,7 +13,7 @@ internal class PhotoOverviewRepositoryImpl(
 
 ) : PhotoOverviewRepository {
     override fun getPhotos(): Single<List<Photo>> {
-        return getRecentPhotosApi.loadRecentPhotos().map {
+        return getRecentPhotosApi.getRecentPhotos().map {
             it.photos.photo //todo: check stat here.
         }
     }
