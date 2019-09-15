@@ -41,14 +41,10 @@ dependencies {
 
     implementation 'io.reactivex.rxjava2:rxjava:2.2.8'
 
-    // KOIN stuff
+    // Koin
     def koin_version = '2.0.1'
     implementation "org.koin:koin-core:$koin_version"
     implementation "org.koin:koin-core-ext:$koin_version"
-
-    /*implementation "org.koin:koin-android:$koin_version"
-    implementation "org.koin:koin-android-scope:$koin_version"
-    implementation "org.koin:koin-android-viewmodel:$koin_version"*/
 
     implementation "org.koin:koin-androidx-scope:$koin_version"
     implementation "org.koin:koin-androidx-viewmodel:$koin_version"

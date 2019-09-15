@@ -3,13 +3,11 @@ package baz.bar.foo.flickrclient.overview
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import baz.bar.foo.flickrclient.overview.models.Photo
 import io.reactivex.disposables.Disposables
 
 sealed class ViewState {
     object Loading : ViewState()
-    data class PhotosLoaded(val list: List<Photo>) :
-        ViewState() //TODO: do not expose data models from network layer to UI.
+    data class PhotosLoaded(val photoUris: List<String>) : ViewState()
 
     data class Error(val cause: Throwable) : ViewState()
 }
@@ -42,7 +40,9 @@ internal class PhotoOverviewViewModelImpl(
         disposable = photoOverviewRepository.getPhotos()
             .map {
                 ViewState.PhotosLoaded(
-                    list = it.takeLast(NUMBER_LATEST_TO_DISPLAY)
+                    photoUris = it.takeLast(NUMBER_LATEST_TO_DISPLAY).map {photo ->
+                        "https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg"
+                    }
                 ) as ViewState
             }
             .toObservable()

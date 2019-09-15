@@ -86,7 +86,7 @@ class PhotosOverviewFragment : Fragment() {
             }
             is ViewState.PhotosLoaded -> {
                 view_overview_loading.hide()
-                adapter.showNewData(viewState.list)
+                adapter.showNewData(viewState.photoUris)
             }
         }
     }
