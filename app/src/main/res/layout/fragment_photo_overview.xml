@@ -6,16 +6,18 @@
     android:orientation="vertical"
     tools:context=".overview.ui.PhotosOverviewFragment">
     
+    <androidx.core.widget.ContentLoadingProgressBar
+        style="?android:attr/progressBarStyleLarge"
+        android:id="@+id/view_overview_loading"
+        android:layout_gravity="center"
+        android:layout_height="40dp"
+        android:layout_width="40dp" />
+    
     <androidx.recyclerview.widget.RecyclerView
         android:focusable="false"
         android:id="@+id/recycler_photo_overview"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:orientation="vertical" />
-    
-    <androidx.core.widget.ContentLoadingProgressBar
-        android:id="@+id/view_overview_loading"
-        android:layout_height="40dp"
-        android:layout_width="40dp" />
 
 </FrameLayout>

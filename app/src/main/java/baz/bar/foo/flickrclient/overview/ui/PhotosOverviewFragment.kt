@@ -27,8 +27,13 @@ class PhotosOverviewFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return LayoutInflater.from(context)
-            .inflate(R.layout.fragment_photo_overview, container, false)
+        return LayoutInflater
+            .from(context)
+            .inflate(
+                R.layout.fragment_photo_overview,
+                container,
+                false
+            )
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
