@@ -15,8 +15,10 @@ import baz.bar.foo.flickrclient.R
 import baz.bar.foo.flickrclient.overview.PhotoOverviewViewModel
 import baz.bar.foo.flickrclient.overview.PhotoOverviewViewModelImpl
 import baz.bar.foo.flickrclient.overview.ViewState
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_photo_overview.*
 import org.koin.android.ext.android.get
+
 
 class PhotosOverviewFragment : Fragment() {
 
@@ -53,7 +55,7 @@ class PhotosOverviewFragment : Fragment() {
         viewModel.viewStateLiveData.observe(
             viewLifecycleOwner,
             Observer {
-                render(it)
+                render(viewModel, it)
             }
 
         )
@@ -75,10 +77,10 @@ class PhotosOverviewFragment : Fragment() {
         recycler_photo_overview.adapter = adapter
     }
 
-    private fun render(viewState: ViewState) {
+    private fun render(viewModel: PhotoOverviewViewModel, viewState: ViewState) {
         when (viewState) {
             is ViewState.Loading -> {
-                when(viewState) {
+                when (viewState) {
                     ViewState.Loading.Initial -> {
                         view_overview_loading.show()
                         swipe_refresh_photo_overview.isRefreshing = false
@@ -91,6 +93,17 @@ class PhotosOverviewFragment : Fragment() {
             is ViewState.Error -> {
                 view_overview_loading.hide()
                 swipe_refresh_photo_overview.isRefreshing = false
+                val snackbar = Snackbar
+                    .make(
+                        requireView(),
+                        getString(R.string.msg_error_occurred),
+                        Snackbar.LENGTH_LONG
+                    )
+                    .setAction(getString(R.string.msg_retry)) {
+                        viewModel.reload()
+                    }
+
+                snackbar.show()
 
             }
             is ViewState.PhotosLoaded -> {
