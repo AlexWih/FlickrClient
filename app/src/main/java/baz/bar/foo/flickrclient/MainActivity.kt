@@ -1,7 +1,7 @@
 package baz.bar.foo.flickrclient
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import baz.bar.foo.flickrclient.overview.ui.PhotosOverviewFragment
 
 class MainActivity : AppCompatActivity() {
@@ -10,7 +10,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        if(savedInstanceState == null) {
+        if (savedInstanceState == null) {
             openInitialScreen()
         }
     }
