@@ -1,6 +1,9 @@
 package baz.bar.foo.flickrclient.overview.ui
 
+import android.app.Activity
 import android.content.res.Configuration.ORIENTATION_LANDSCAPE
+import android.graphics.Point
+import android.graphics.Rect
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +14,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import baz.bar.foo.flickrclient.R
 import baz.bar.foo.flickrclient.overview.PhotoOverviewViewModel
 import baz.bar.foo.flickrclient.overview.PhotoOverviewViewModelImpl
@@ -73,7 +77,9 @@ class PhotosOverviewFragment : Fragment() {
                 2
             }
         )
-        /*recycler_photo_overview.addItemDecoration()*/
+        recycler_photo_overview.addItemDecoration(
+            ItemDecorationImpl(requireActivity())
+        )
         recycler_photo_overview.layoutManager = layoutManager
         recycler_photo_overview.adapter = adapter
     }
@@ -113,5 +119,38 @@ class PhotosOverviewFragment : Fragment() {
                 adapter.showNewData(viewState.photoUris)
             }
         }
+    }
+}
+
+class ItemDecorationImpl(activity: Activity) : RecyclerView.ItemDecoration() {
+
+    private val isOrientationLandscape =
+        activity.resources.configuration.orientation == ORIENTATION_LANDSCAPE
+
+    private val spaceBetween: Float
+
+
+    init {
+        val display = activity.windowManager.defaultDisplay
+        val size = Point()
+        display.getSize(size)
+        val width = size.x
+
+        spaceBetween =
+            if (isOrientationLandscape) {
+                0.04f
+            } else {
+                0.1f
+            } * width
+    }
+
+    override fun getItemOffsets(
+        outRect: Rect,
+        view: View,
+        parent: RecyclerView,
+        state: RecyclerView.State
+    ) {
+        outRect.right = spaceBetween.toInt()
+        outRect.bottom = spaceBetween.toInt()
     }
 }
