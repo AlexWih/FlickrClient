@@ -1,7 +1,11 @@
 package baz.bar.foo.flickrclient
 
 import android.app.Application
-import baz.bar.foo.flickrclient.overview.ImageOverviewViewModelImpl
+import baz.bar.foo.flickrclient.overview.GetRecentPhotosApi
+import baz.bar.foo.flickrclient.overview.PhotoOverviewRepository
+import baz.bar.foo.flickrclient.overview.PhotoOverviewRepositoryImpl
+import baz.bar.foo.flickrclient.overview.PhotoOverviewViewModel
+import baz.bar.foo.flickrclient.overview.PhotoOverviewViewModelImpl
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.KotlinModule
 import io.reactivex.schedulers.Schedulers
@@ -34,9 +38,22 @@ class FlickrClientApplication : Application() {
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
                     .build()
             }
-            single {
-                ImageOverviewViewModelImpl(
 
+            single<GetRecentPhotosApi> {
+                get<Retrofit>().create(GetRecentPhotosApi::class.java)
+            }
+
+
+            //TODO: These below actually must be not in app-wide scope!
+            single<PhotoOverviewRepository> {
+                PhotoOverviewRepositoryImpl(
+                    getRecentPhotosApi = get()
+                )
+            }
+
+            single<PhotoOverviewViewModel> {
+                PhotoOverviewViewModelImpl(
+                    photoOverviewRepository = get()
                 )
             }
         }
