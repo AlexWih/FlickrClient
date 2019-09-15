@@ -52,6 +52,7 @@ class PhotosOverviewFragment : Fragment() {
             }
 
         )
+        viewModel.load()
     }
 
     private fun initPhotoList() {
