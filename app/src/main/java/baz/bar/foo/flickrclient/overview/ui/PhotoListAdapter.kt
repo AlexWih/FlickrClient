@@ -42,6 +42,9 @@ class PhotoHolder(private val view: View) : RecyclerView.ViewHolder(view) {
     private val image = view.view_photo_overview
 
     fun bind(photoUri: String) {
-        Glide.with(view).load(photoUri).into(image)
+        Glide.with(view)
+            .load(photoUri)
+            .centerCrop()
+            .into(image)
     }
 }
