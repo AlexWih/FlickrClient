@@ -15,7 +15,7 @@ sealed class ViewState {
 }
 
 interface PhotoOverviewViewModel {
-    val result: LiveData<ViewState>
+    val viewStateLiveData: LiveData<ViewState>
 
     fun load()
     fun retry()
@@ -29,7 +29,7 @@ internal class PhotoOverviewViewModelImpl(
 
     private var disposable = Disposables.empty()
 
-    override val result: LiveData<ViewState>
+    override val viewStateLiveData: LiveData<ViewState>
         get() = liveData
 
     override fun load() {
