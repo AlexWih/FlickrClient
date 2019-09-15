@@ -17,9 +17,11 @@ sealed class ViewState {
 interface PhotoOverviewViewModel {
     val viewStateLiveData: LiveData<ViewState>
 
-    fun load()
+    fun reload()
     fun retry()
 }
+
+private const val NUMBER_LATEST_TO_DISPLAY = 20
 
 internal class PhotoOverviewViewModelImpl(
     private val photoOverviewRepository: PhotoOverviewRepository
@@ -32,11 +34,15 @@ internal class PhotoOverviewViewModelImpl(
     override val viewStateLiveData: LiveData<ViewState>
         get() = liveData
 
-    override fun load() {
+    init {
+        reload()
+    }
+
+    override fun reload() {
         disposable = photoOverviewRepository.getPhotos()
             .map {
                 ViewState.PhotosLoaded(
-                    list = it
+                    list = it.takeLast(NUMBER_LATEST_TO_DISPLAY)
                 ) as ViewState
             }
             .toObservable()

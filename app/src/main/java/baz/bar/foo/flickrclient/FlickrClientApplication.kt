@@ -32,7 +32,7 @@ class FlickrClientApplication : Application() {
                 val okHttpClient = OkHttpClient.Builder().build()
 
                 Retrofit.Builder()
-                    .baseUrl("https://api.flickr.com/services/rest/")
+                    .baseUrl("https://api.flickr.com/services/")
                     .client(okHttpClient)
                     .addConverterFactory(JacksonConverterFactory.create(get()))
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
