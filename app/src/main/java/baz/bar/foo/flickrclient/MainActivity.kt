@@ -11,9 +11,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         if(savedInstanceState == null) {
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, PhotosOverviewFragment())
-                .commit()
+            openInitialScreen()
         }
+    }
+
+    private fun openInitialScreen() {
+        val initialScreen = PhotosOverviewFragment()
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, initialScreen)
+            .commit()
     }
 }
