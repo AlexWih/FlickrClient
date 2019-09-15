@@ -12,14 +12,14 @@
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.1" />
+        app:layout_constraintGuide_percent="@dimen/left_list_padding" />
     
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/right_guideline"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.9" />
+        app:layout_constraintGuide_percent="@dimen/right_list_padding" />
     
     <androidx.core.widget.ContentLoadingProgressBar
         style="?android:attr/progressBarStyleLarge"

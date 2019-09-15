@@ -73,6 +73,7 @@ class PhotosOverviewFragment : Fragment() {
                 2
             }
         )
+        /*recycler_photo_overview.addItemDecoration()*/
         recycler_photo_overview.layoutManager = layoutManager
         recycler_photo_overview.adapter = adapter
     }
