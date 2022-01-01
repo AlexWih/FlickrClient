@@ -63,9 +63,6 @@ class PhotosOverviewFragment : Fragment() {
             }
 
         )
-        swipe_refresh_photo_overview.setOnRefreshListener {
-            viewModel.reload()
-        }
     }
 
     private fun initPhotoList() {
@@ -90,16 +87,13 @@ class PhotosOverviewFragment : Fragment() {
                 when (viewState) {
                     ViewState.Loading.Initial -> {
                         view_overview_loading.show()
-                        swipe_refresh_photo_overview.isRefreshing = false
                     }
                     ViewState.Loading.Reloading -> {
-                        swipe_refresh_photo_overview.isRefreshing = true
                     }
                 }
             }
             is ViewState.Error -> {
                 view_overview_loading.hide()
-                swipe_refresh_photo_overview.isRefreshing = false
                 val snackbar = Snackbar
                     .make(
                         requireView(),
@@ -115,7 +109,6 @@ class PhotosOverviewFragment : Fragment() {
             }
             is ViewState.PhotosLoaded -> {
                 view_overview_loading.hide()
-                swipe_refresh_photo_overview.isRefreshing = false
                 adapter.showNewData(viewState.photoUris)
             }
         }
