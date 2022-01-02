@@ -43,8 +43,6 @@ class FlickrClientApplication : Application() {
                 get<Retrofit>().create(GetRecentPhotosApi::class.java)
             }
 
-
-            //TODO: These below actually must be not in app-wide scope!
             single<PhotoOverviewRepository> {
                 PhotoOverviewRepositoryImpl(
                     getRecentPhotosApi = get()

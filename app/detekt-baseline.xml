@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues></ManuallySuppressedIssues>
+  <CurrentIssues>
+    <ID>ForbiddenComment:PhotoListAdapter.kt$PhotoListAdapter$//TODO: to improve using Diff Utils if time allows.</ID>
+    <ID>ForbiddenComment:PhotoOverviewRepository.kt$PhotoOverviewRepositoryImpl$//todo: check stat here.</ID>
+    <ID>MagicNumber:PhotosOverviewFragment.kt$ItemDecorationImpl$0.04f</ID>
+    <ID>MagicNumber:PhotosOverviewFragment.kt$ItemDecorationImpl$0.1f</ID>
+    <ID>MagicNumber:PhotosOverviewFragment.kt$PhotosOverviewFragment$4</ID>
+    <ID>MaxLineLength:PhotosOverviewFragment.kt$PhotosOverviewFragment.&lt;no name provided&gt;$//NOTE: actually creating new instances is responsibility of DI, doing it here in sake of simplicity. To be improved later.</ID>
+  </CurrentIssues>
+</SmellBaseline>

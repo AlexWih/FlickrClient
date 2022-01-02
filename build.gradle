@@ -19,6 +19,11 @@ plugins {
     id "io.gitlab.arturbosch.detekt" version "1.19.0"
 }
 
+detekt {
+    config = files("config/detekt/detekt.yml")
+    autoCorrect = true
+}
+
 allprojects {
     repositories {
         google()
