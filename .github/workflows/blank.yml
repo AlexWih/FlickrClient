@@ -28,3 +28,5 @@ jobs:
           java-version: 1.8
       - name: Build with Gradle
         run: ./gradlew assembleDebug
+      - name: Build with Gradle
+        run: ./gradlew testDebugUnitTest
