@@ -15,7 +15,7 @@ internal class PhotoListAdapter : RecyclerView.Adapter<PhotoHolder>() {
     fun showNewData(photos: List<String>) {
         photoUris.clear()
         photoUris.addAll(photos)
-        notifyDataSetChanged() //TODO: to improve using Diff Utils if time allows.
+        notifyDataSetChanged() // TODO: to improve using Diff Utils if time allows.
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoHolder {
@@ -34,7 +34,6 @@ internal class PhotoListAdapter : RecyclerView.Adapter<PhotoHolder>() {
     }
 
     override fun getItemCount() = photoUris.size
-
 }
 
 class PhotoHolder(private val view: View) : RecyclerView.ViewHolder(view) {

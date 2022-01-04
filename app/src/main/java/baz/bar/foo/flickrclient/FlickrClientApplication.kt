@@ -22,10 +22,14 @@ class FlickrClientApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
+        // TODO cld
         val networkingModule = module {
-
-            single {
-                ObjectMapper().registerModule(KotlinModule())
+//
+            single { //
+                ObjectMapper()
+                    .registerModule(
+                        KotlinModule()
+                    )
             }
 
             single {
@@ -65,4 +69,3 @@ class FlickrClientApplication : Application() {
         }
     }
 }
-

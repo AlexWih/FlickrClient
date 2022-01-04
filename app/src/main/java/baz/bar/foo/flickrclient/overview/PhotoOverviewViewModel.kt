@@ -8,8 +8,8 @@ import io.reactivex.internal.disposables.SequentialDisposable
 
 sealed class ViewState {
     sealed class Loading : ViewState() {
-        object Initial: Loading()
-        object Reloading: Loading()
+        object Initial : Loading()
+        object Reloading : Loading()
     }
     data class PhotosLoaded(val photoUris: List<String>) : ViewState()
 
@@ -74,5 +74,4 @@ internal class PhotoOverviewViewModelImpl(
         super.onCleared()
         disposable.dispose()
     }
-
 }
