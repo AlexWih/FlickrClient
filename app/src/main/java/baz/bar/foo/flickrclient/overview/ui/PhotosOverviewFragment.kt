@@ -23,7 +23,6 @@ import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_photo_overview.*
 import org.koin.android.ext.android.get
 
-
 class PhotosOverviewFragment : Fragment() {
 
     private val adapter: PhotoListAdapter = PhotoListAdapter()
@@ -48,14 +47,17 @@ class PhotosOverviewFragment : Fragment() {
         initPhotoList()
 
         val viewModel: PhotoOverviewViewModel =
-            ViewModelProviders.of(this, object : ViewModelProvider.Factory {
-                override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-                    //NOTE: actually creating new instances is responsibility of DI, doing it here in sake of simplicity. To be improved later.
-                    return PhotoOverviewViewModelImpl(
-                        photoOverviewRepository = get()
-                    ) as T
+            ViewModelProviders.of(
+                this,
+                object : ViewModelProvider.Factory {
+                    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+                        // NOTE: actually creating new instances is responsibility of DI, doing it here in sake of simplicity. To be improved later.
+                        return PhotoOverviewViewModelImpl(
+                            photoOverviewRepository = get()
+                        ) as T
+                    }
                 }
-            }).get(PhotoOverviewViewModelImpl::class.java)
+            ).get(PhotoOverviewViewModelImpl::class.java)
         viewModel.viewStateLiveData.observe(
             viewLifecycleOwner,
             Observer {
@@ -68,7 +70,8 @@ class PhotosOverviewFragment : Fragment() {
     private fun initPhotoList() {
         val isOrientationLandscape = resources.configuration.orientation == ORIENTATION_LANDSCAPE
         val layoutManager = GridLayoutManager(
-            context, if (isOrientationLandscape) {
+            context,
+            if (isOrientationLandscape) {
                 4
             } else {
                 2
@@ -105,7 +108,6 @@ class PhotosOverviewFragment : Fragment() {
                     }
 
                 snackbar.show()
-
             }
             is ViewState.PhotosLoaded -> {
                 view_overview_loading.hide()
@@ -122,7 +124,6 @@ class ItemDecorationImpl(activity: Activity) : RecyclerView.ItemDecoration() {
 
     private val spaceBetween: Float
 
-
     init {
         val display = activity.windowManager.defaultDisplay
         val size = Point()
@@ -131,10 +132,10 @@ class ItemDecorationImpl(activity: Activity) : RecyclerView.ItemDecoration() {
 
         spaceBetween =
             if (isOrientationLandscape) {
-                0.04f
-            } else {
-                0.1f
-            } * width
+            0.04f
+        } else {
+            0.1f
+        } * width
     }
 
     override fun getItemOffsets(

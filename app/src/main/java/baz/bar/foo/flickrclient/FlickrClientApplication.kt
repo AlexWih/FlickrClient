@@ -22,10 +22,14 @@ class FlickrClientApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
+        // TODO cld
         val networkingModule = module {
-
-            single {
-                ObjectMapper().registerModule(KotlinModule())
+//
+            single { //
+                ObjectMapper()
+                    .registerModule(
+                        KotlinModule()
+                    )
             }
 
             single {
@@ -43,8 +47,6 @@ class FlickrClientApplication : Application() {
                 get<Retrofit>().create(GetRecentPhotosApi::class.java)
             }
 
-
-            //TODO: These below actually must be not in app-wide scope!
             single<PhotoOverviewRepository> {
                 PhotoOverviewRepositoryImpl(
                     getRecentPhotosApi = get()
@@ -67,4 +69,3 @@ class FlickrClientApplication : Application() {
         }
     }
 }
-
