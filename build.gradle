@@ -8,7 +8,8 @@ buildscript {
 
     }
     dependencies {
-        def foo = "SECRETXXX"
+        // this is a change!
+        def foo = "***REMOVED***"
         classpath 'com.android.tools.build:gradle:7.0.4'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         // NOTE: Do not place your application dependencies here; they belong
