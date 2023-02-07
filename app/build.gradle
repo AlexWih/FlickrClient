@@ -6,6 +6,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: "org.jlleitschuh.gradle.ktlint"
 
 android {
+    // this is a change!
     compileSdkVersion 31
     defaultConfig {
         applicationId "baz.bar.foo.flickrclient"
